@@ -4,9 +4,13 @@ import Input from "../shared/Input";
 import Button from "../shared/Button";
 import Select from "../shared/Select";
 import { useForm, FieldValues } from "react-hook-form";
-import JoditEditor from "jodit-react";
+import dynamic from "next/dynamic";
 import { JoditButtons, Options } from "../../constants";
 import { generateBlog } from "@/app/api";
+
+const JoditEditor = dynamic(() => import("jodit-react"), {
+  ssr: false,
+});
 
 interface Props {
   isOpen: boolean;
@@ -110,7 +114,8 @@ const GenerateBlogModal: React.FC<Props> = ({ isOpen, onClose, data }) => {
               ref={editor}
               value={content}
               config={config}
-              onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+              onBlur={(newContent) => setContent(newContent)}
+              // onChange={(newContent) => setContent(newContent)}
             />
           </div>
           <div className="flex w-full justify-between gap-4 flex-wrap">
@@ -138,4 +143,6 @@ const GenerateBlogModal: React.FC<Props> = ({ isOpen, onClose, data }) => {
   );
 };
 
-export default GenerateBlogModal;
+export default dynamic(() => Promise.resolve(GenerateBlogModal), {
+  ssr: false,
+});

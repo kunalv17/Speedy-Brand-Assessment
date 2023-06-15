@@ -3,6 +3,7 @@ import Button from "./shared/Button";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ColorCycle } from "../constants";
 import GenerateBlogModal from "./modals/GeneateBlogModal";
+import dynamic from "next/dynamic";
 
 interface Props {
   data: ISuggestedData;
@@ -50,4 +51,4 @@ const SingleTopic: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default SingleTopic;
+export default dynamic(() => Promise.resolve(SingleTopic), { ssr: false });

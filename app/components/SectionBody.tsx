@@ -1,12 +1,11 @@
 "use client";
 
 import { useAppContext } from "@/app/context/AppContext";
-import { SectionHeaderListData, SuggestedTopics } from "../constants";
+import { SuggestedTopics } from "../constants";
 import SingleTopic from "@/app/components/SingleTopic";
+import dynamic from "next/dynamic";
 
-interface Props {}
-
-const SectionBody: React.FC<Props> = () => {
+const SectionBody: React.FC = () => {
   const { activeState, setActiveState, customData, setCustomData } =
     useAppContext();
 
@@ -39,4 +38,6 @@ const SectionBody: React.FC<Props> = () => {
   );
 };
 
-export default SectionBody;
+export default dynamic(() => Promise.resolve(SectionBody), {
+  ssr: false,
+});
