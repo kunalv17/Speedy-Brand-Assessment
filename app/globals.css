@@ -2,26 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.editor::-webkit-scrollbar{
+  width:0;
+  background: transparent;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.jodit-status-bar-link{
+  display: none !important;
+}
+
+.jodit-add-new-line,.jodit-add-new-line_after{
+  display: none !important;
+}
+
+.jodit-dialog__content::-webkit-scrollbar{
+  width:0;
+  background: transparent;
 }
